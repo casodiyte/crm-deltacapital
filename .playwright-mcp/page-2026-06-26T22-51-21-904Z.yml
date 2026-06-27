@@ -1,0 +1,27 @@
+- generic [ref=e4]:
+  - generic [ref=e5]:
+    - generic [ref=e6]:
+      - img "Delta Capital" [ref=e8]
+      - generic [ref=e9]:
+        - generic [ref=e10]: DELTA CAPITAL
+        - generic [ref=e13]: Sistema Activo
+    - generic [ref=e14]:
+      - heading "Private Sales & Trading Operations" [level=2] [ref=e15]:
+        - text: Private Sales &
+        - text: Trading Operations
+      - paragraph [ref=e17]: Institutional-grade CRM platform for high-frequency sales tracking, deal structuring, and financial flow management.
+    - generic [ref=e18]: © 2026 Delta Capital & Holding Street. All rights reserved.
+  - generic [ref=e23]:
+    - generic [ref=e24]:
+      - heading "Acceso Privado" [level=1] [ref=e25]
+      - paragraph [ref=e26]: Ingresa tus credenciales para acceder al sistema
+    - generic [ref=e27]:
+      - generic [ref=e28]:
+        - text: Correo electrónico
+        - textbox "nombre@empresa.com" [ref=e29]
+      - generic [ref=e30]:
+        - text: Contraseña
+        - textbox "••••••••" [ref=e31]
+      - button "Iniciar Sesión" [ref=e32] [cursor=pointer]
+    - link "¿Olvidaste tu contraseña?" [ref=e34] [cursor=pointer]:
+      - /url: /forgot-password
