@@ -74,7 +74,7 @@ export const EquipoDirectory = () => {
   const fetchDirectory = useCallback(async () => {
     setLoading(true);
     const [{ data: profileData }, { data: teamData }] = await Promise.all([
-      supabase.from("profiles").select("*").eq("active", true).order("first_name"),
+      supabase.from("profiles").select("*").not("is_trading_client", "is", true).eq("active", true).order("first_name"),
       supabase.from("teams").select("*").order("name"),
     ]);
     setProfiles((profileData ?? []) as Profile[]);

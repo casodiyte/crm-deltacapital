@@ -26,6 +26,8 @@ export interface Profile {
   last_seen_at?: string;
   created_at: string;
   updated_at: string;
+  /** true = cliente de la plataforma de trading (comparte auth/profiles), no un agente del CRM. */
+  is_trading_client?: boolean;
 }
 
 export interface Team {

@@ -53,7 +53,7 @@ export const BurnList = () => {
 
     const [{ data, error: leadError }, { data: profileData }] = await Promise.all([
       query,
-      supabase.from("profiles").select("*"),
+      supabase.from("profiles").select("*").not("is_trading_client", "is", true),
     ]);
 
     if (leadError) {

@@ -163,7 +163,7 @@ export const NegociacionesKanban = () => {
       fetchAllRows<Deal>(buildDealsQuery),
       fetchAllRows<Lead>(buildLeadsQuery),
       activitiesQuery,
-      supabase.from("profiles").select("id,first_name,last_name,email,role,department,team_id,active").eq("active", true).order("first_name"),
+      supabase.from("profiles").select("id,first_name,last_name,email,role,department,team_id,active").not("is_trading_client", "is", true).eq("active", true).order("first_name"),
     ]);
     const firstError = dealResult.error || leadResult.error || activityResult.error || profileResult.error;
     if (firstError) setError(firstError.message || "No se pudo cargar el pipeline.");

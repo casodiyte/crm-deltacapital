@@ -58,6 +58,7 @@ export const DashboardLayout = ({ children }: { children: React.ReactNode }) => 
       let query = supabase
         .from("profiles")
         .select("id,email,first_name,last_name,role,department,team_id,active,last_seen_at,created_at,updated_at")
+        .not("is_trading_client", "is", true)
         .neq("id", originalProfile?.id || "")
         .eq("active", true);
         

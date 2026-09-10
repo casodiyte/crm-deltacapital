@@ -23,7 +23,7 @@ export function ExportLeadsPanel() {
   useEffect(() => {
     if (!profile) return;
     // Load agents for filter
-    supabase.from('profiles').select('*').in('role', ['AGENT', 'SUPERVISOR']).then(({ data }) => {
+    supabase.from('profiles').select('*').not('is_trading_client', 'is', true).in('role', ['AGENT', 'SUPERVISOR']).then(({ data }) => {
       if (data) setAgents(data as Profile[]);
     });
     // Unique campaign names

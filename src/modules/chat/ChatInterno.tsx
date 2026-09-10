@@ -139,7 +139,7 @@ export const ChatInterno = () => {
     if (!profile) return;
     void Promise.all([
       fetchChannels(),
-      supabase.from("profiles").select("*").eq("active", true).order("first_name").then(({ data }) => setAllUsers((data ?? []) as Profile[])),
+      supabase.from("profiles").select("*").not("is_trading_client", "is", true).eq("active", true).order("first_name").then(({ data }) => setAllUsers((data ?? []) as Profile[])),
     ]);
   }, [fetchChannels, profile]);
 

@@ -159,7 +159,8 @@ export const ProspectosList = () => {
     try {
       const { data, error } = await supabase
         .from("profiles")
-        .select("*");
+        .select("*")
+        .not("is_trading_client", "is", true);
       if (!error && data) {
         const scopedAgents = (data as Profile[]).filter((agent) => {
           if (agent.role !== "AGENT") return false;

@@ -39,6 +39,7 @@ export const ImportExportPage = () => {
     supabase
       .from('profiles')
       .select('*')
+      .not('is_trading_client', 'is', true)
       .eq('role', 'AGENT')
       .then(({ data }) => { if (data) setAgents(data as Profile[]); });
   }, [profile]);

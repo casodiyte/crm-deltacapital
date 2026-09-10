@@ -22,9 +22,12 @@ export const AdminPanel = () => {
   const fetchProfiles = async () => {
     try {
       setLoading(true);
+      // Excluye a los clientes de la plataforma de trading: comparten el mismo
+      // proyecto Supabase (auth.users + profiles), pero no son agentes del CRM.
       const { data, error } = await supabase
         .from("profiles")
         .select("*")
+        .not("is_trading_client", "is", true)
         .order("created_at", { ascending: false });
 
       if (!error && data) {
