@@ -3,6 +3,7 @@ import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/auth/useAuth";
 import type { Profile } from "@/types";
 import { Link } from "react-router";
+import { edgeFunctionError } from "@/lib/edgeFunctionError";
 import { Edit3, UserCheck, UserMinus, ShieldAlert, Shield, UserPlus } from "lucide-react";
 
 export const AdminPanel = () => {
@@ -65,7 +66,8 @@ export const AdminPanel = () => {
         const { data: fnData, error: fnError } = await supabase.functions.invoke('admin_update_password', {
           body: { target_user_id: editingProfile.id, new_password: editPassword }
         });
-        if (fnError || fnData?.error) throw new Error(fnData?.error || fnError?.message || "No se pudo cambiar la contraseña");
+        if (fnError) throw await edgeFunctionError(fnError, "No se pudo cambiar la contraseña");
+        if (fnData?.error) throw new Error(fnData.error);
       }
 
       setEditingProfile(null);

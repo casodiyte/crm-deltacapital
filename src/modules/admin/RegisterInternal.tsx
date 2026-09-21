@@ -2,6 +2,7 @@ import { useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { ShieldCheck, UserPlus, AlertCircle } from "lucide-react";
 import { useAuth } from "@/auth/useAuth";
+import { edgeFunctionError } from "@/lib/edgeFunctionError";
 
 export const RegisterInternal = () => {
   const { originalProfile } = useAuth();
@@ -31,7 +32,8 @@ export const RegisterInternal = () => {
         },
       });
 
-      if (error || data?.error) throw new Error(data?.error || error?.message || "No se pudo registrar al colaborador");
+      if (error) throw await edgeFunctionError(error, "No se pudo registrar al colaborador");
+      if (data?.error) throw new Error(data.error);
 
       if (data?.success) {
         setMessage({
