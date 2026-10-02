@@ -42,7 +42,10 @@ const OutcomeBadge = ({ lead, onOutcomeChange }: { lead?: Lead; onOutcomeChange?
   const config = CONTACT_OUTCOME_CONFIG[outcome] ?? CONTACT_OUTCOME_CONFIG.pending;
 
   if (!lead || !onOutcomeChange) {
-    if (outcome === "pending") return null;
+    // A deal with no linked prospect has no typification to speak of. One that
+    // does is always labelled, even when unclassified -- hiding it read it as
+    // "the typification is missing" rather than "nobody has classified it yet".
+    if (!lead) return null;
     return (
       <span
         className="inline-flex shrink-0 items-center rounded-md px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider"
